@@ -12,9 +12,9 @@ const express = require('express'),
   Genres = Models.Genre,
   config = require('./config.js'),
   UsersRouter = require('./users/users-router'),
-  MoviesRouter = require('./movies/movies-router.js'),
-  DirectorsRouter = require('./directors/directors-router.js'),
-  GenresRouter = require('./genres/genres-router.js');
+  MoviesRouter = require('./movies/movies-router'),
+  DirectorsRouter = require('./directors/directors-router'),
+  GenresRouter = require('./genres/genres-router');
 
 mongoose.connect(config.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
