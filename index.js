@@ -1,34 +1,34 @@
 require('dotenv').config();
 const express = require('express'),
-morgan = require('morgan'),
-bodyParser = require('body-parser'),
-uuid = require('uuid'),
-methodOverride = require('method-override'),
-mongoose = require('mongoose'),
-Models = require('./models.js'),
-Movies = Models.Movie,
-Users = Models.User,
-Directors = Models.Director,
-Genres = Models.Genre,
-config = require('./config.js'),
-UsersRouter = require('../users/users-router.js'),
-MoviesRouter = require('./movies/movies-router.js'),
-DirectorsRouter = require('./director/directors-router.js'),
-GenresRouter = require('./genres/genres-router.js');
+  morgan = require('morgan'),
+  bodyParser = require('body-parser'),
+  uuid = require('uuid'),
+  methodOverride = require('method-override'),
+  mongoose = require('mongoose'),
+  Models = require('./models.js'),
+  Movies = Models.Movie,
+  Users = Models.User,
+  Directors = Models.Director,
+  Genres = Models.Genre,
+  config = require('./config.js'),
+  UsersRouter = require('./users/users-router'),
+  MoviesRouter = require('./movies/movies-router.js'),
+  DirectorsRouter = require('./directors/directors-router.js'),
+  GenresRouter = require('./genres/genres-router.js');
 
-mongoose.connect( config.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(config.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 
 const app = express();
-const {check, validationResult} = require('express-validator');
+const { check, validationResult } = require('express-validator');
 
 app.use(express.static('public'));
 app.use(express.json());
 app.use(morgan('common')),
-app.use('/users', UsersRouter),
-app.use('/movies', MoviesRouter),
-app.use('/directors', DirectorsRouter),
-app.use('/genres', GenresRouter);
+  app.use('/users', UsersRouter),
+  app.use('/movies', MoviesRouter),
+  app.use('/directors', DirectorsRouter),
+  app.use('/genres', GenresRouter);
 
 app.use(bodyParser.urlencoded({
   extended: true
@@ -39,10 +39,10 @@ let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
 
 app.use(cors({
   origin: (origin, callback) => {
-    if(!origin) return callback(null, true);
-    if(alloweOrigins.indexOf(origin) === -1){
+    if (!origin) return callback(null, true);
+    if (alloweOrigins.indexOf(origin) === -1) {
       let message = "The CORS policy for this appication doesn't allow access form origin " + origin;
-      return callback(new Error(message ), false);
+      return callback(new Error(message), false);
     }
     return callback(null, ture);
   }
