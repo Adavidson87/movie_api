@@ -1,12 +1,13 @@
-const jwtSecret = 'your_jwt_secret'; // this has to be the same key used in the JWTStrategy
+// const jwtSecret = 'your_jwt_secret'; // this has to be the same key used in the JWTStrategy
 
 const jwt = require('jsonwebtoken'),
-passport = require('passport');
+passport = require('passport'),
+config = require('./config');
 
 require('./passport'); //local passport file
 
 let generateJWTToken = (user) => {
-  return jwt.sign(user, jwtSecret, {
+  return jwt.sign(user, config.JWT_SECRET, {
     subject: user.Username,
     expiresIn: '7d',
     algorithm: 'HS256'
