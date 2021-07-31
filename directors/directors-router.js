@@ -1,5 +1,5 @@
 const express = require('express');
-const DirectorsRouter = express.Router;
+const DirectorsRouter = express.Router();
 const Models = require('../models.js');
 const Directors = Models.Director;
 const passport = require('passport');

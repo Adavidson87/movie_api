@@ -1,5 +1,5 @@
 const express = require('express');
-const MoviesRouter = express.Router;
+const MoviesRouter = express.Router();
 const Models = require('../models.js');
 const Movies = Models.Movie;
 const passport = require('passport');
