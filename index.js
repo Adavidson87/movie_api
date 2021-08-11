@@ -37,16 +37,17 @@ const cors = require('cors');
 
 let allowedOrigins = ['http://localhost:8080', 'http://testsite.com', 'http://localhost:1234'];
 
-app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin) return callback(null, true);
-    if (alloweOrigins.indexOf(origin) === -1) {
-      let message = "The CORS policy for this appication doesn't allow access form origin " + origin;
-      return callback(new Error(message), false);
-    }
-    return callback(null, ture);
-  }
-}));
+app.use(cors());
+// {
+//   origin: (origin, callback) => {
+//     if (!origin) return callback(null, true);
+//     if (alloweOrigins.indexOf(origin) === -1) {
+//       let message = "The CORS policy for this appication doesn't allow access form origin " + origin;
+//       return callback(new Error(message), false);
+//     }
+//     return callback(null, ture);
+//   }
+// }));
 
 //imports authentication code
 let auth = require('./auth')(app);
