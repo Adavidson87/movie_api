@@ -86,20 +86,21 @@ MoviesRouter.get('/', (req, res) => { /* get request for all movies */
         } else {
           res.json(updatedMovie);
         }
-      })
-      .delete('/:Title', passport.authenticate('jwt', { session: false }), (req, res) => { /*  Deletes a movie from our list by title */
-        Movies.findOneAndRemove({ Title: req.params.Title })
-          .then((movie) => {
-            if (!movie) {
-              res.status(400).send(req.params.Title + ' was not found');
-            } else {
-              res.status(200).send(req.params.Title + ' was deleted.');
-            }
-          })
-          .catch((err) => {
-            console.error(err);
-            res.status(500).send('Error: ' + err);
-          });
       });
+  })
+  .delete('/:Title', passport.authenticate('jwt', { session: false }), (req, res) => { /*  Deletes a movie from our list by title */
+    Movies.findOneAndRemove({ Title: req.params.Title })
+      .then((movie) => {
+        if (!movie) {
+          res.status(400).send(req.params.Title + ' was not found');
+        } else {
+          res.status(200).send(req.params.Title + ' was deleted.');
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).send('Error: ' + err);
+      });
+  });
 
-    module.exports = MoviesRouter
+module.exports = MoviesRouter
