@@ -15,7 +15,7 @@ DirectorsRouter.get('/', (req, res) => { /* GET request for all directors */
       res.status(500).send('Error: ' + err)
     });
 })
-  .get('/s:Name', (req, res) => { /* GET request for director by name */
+  .get('/:Name', (req, res) => { /* GET request for director by name */
     Directors.findOne({ Name: req.params.Name })
       .then((director) => {
         res.json(director);
