@@ -7,7 +7,7 @@ const { check, validationResult } = require('express-validator');
 
 //Adds a new user
 UsersRouter
-  .get('/', (req, res) => { /* gets all users*/
+  .get('/', passport.authenticate('jwt', { session: false }), (req, res) => { /* gets all users*/
     Users.find()
       .then((users) => {
         res.status(201).json(users);
@@ -17,7 +17,7 @@ UsersRouter
         res.status(500).send('Error: ' + err)
       });
   })
-  .get('/:Username', (req, res) => { /* GET users by username*/
+  .get('/:Username', passport.authenticate('jwt', { session: false }), (req, res) => { /* GET users by username*/
     Users.findOne({ Username: req.params.Username })
       .then((users) => {
         res.json(users);

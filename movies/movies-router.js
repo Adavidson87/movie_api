@@ -6,7 +6,7 @@ const passport = require('passport');
 const { check, validationResult } = require('express-validator');
 
 
-MoviesRouter.get('/', (req, res) => { /* get request for all movies */
+MoviesRouter.get('/', passport.authenticate('jwt', { session: false }), (req, res) => { /* get request for all movies */
   Movies.find()
     .then((movies) => {
       res.status(201).json(movies);
@@ -16,7 +16,7 @@ MoviesRouter.get('/', (req, res) => { /* get request for all movies */
       res.status(500).send('Error: ' + err)
     });
 })
-  .get('/movie/:Title', (req, res) => { /* get request for movie by title */
+  .get('/movie/:Title', passport.authenticate('jwt', { session: false }), (req, res) => { /* get request for movie by title */
     Movies.findOne({ Title: req.params.Title })
       .then((movie) => {
         res.json(movie);

@@ -5,7 +5,7 @@ const Genres = Models.Genre;
 const passport = require('passport');
 const { check, validationResult } = require('express-validator');
 
-GenresRouter.get('/', (req, res) => { /* get request for all genres */
+GenresRouter.get('/', passport.authenticate('jwt', { session: false }), (req, res) => { /* get request for all genres */
   Genres.find()
     .then((genres) => {
       res.status(201).json(genres);
@@ -15,7 +15,7 @@ GenresRouter.get('/', (req, res) => { /* get request for all genres */
       res.status(500).send('Error: ' + err)
     });
 })
-  .get('/:Name', (req, res) => { /* get request for genre by name */
+  .get('/:Name', passport.authenticate('jwt', { session: false }), (req, res) => { /* get request for genre by name */
     Genres.findOne({ Name: req.params.Name })
       .then((genre) => {
         res.json(genre);
