@@ -22,22 +22,24 @@ mongoose.connect(config.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopol
 const app = express();
 const { check, validationResult } = require('express-validator');
 
+const cors = require('cors');
+app.use(cors())
+
 app.use(express.static('public'));
 app.use(express.json());
-app.use(morgan('common')),
-  app.use('/users', UsersRouter),
-  app.use('/movies', MoviesRouter),
-  app.use('/directors', DirectorsRouter),
-  app.use('/genres', GenresRouter);
+app.use(morgan('common'));
+app.use('/users', UsersRouter);
+app.use('/movies', MoviesRouter);
+app.use('/directors', DirectorsRouter);
+app.use('/genres', GenresRouter);
 
 app.use(bodyParser.urlencoded({
   extended: true
 }));
-const cors = require('cors');
+
 
 // let allowedOrigins = ['http://localhost:8080', 'http://testsite.com', 'http://localhost:1234'];
 
-app.use(cors())
 //   {
 //   origin: (origin, callback) => {
 //     if (!origin) return callback(null, true);
