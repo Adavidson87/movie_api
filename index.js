@@ -29,16 +29,16 @@ app.use(express.static('public'));
 app.use(express.json());
 app.use(morgan('common'));
 app.use('/users', UsersRouter);
-app.use('/movies', MoviesRouter);
-app.use('/directors', DirectorsRouter);
-app.use('/genres', GenresRouter);
+// app.use('/movies', MoviesRouter);
+// app.use('/directors', DirectorsRouter);
+// app.use('/genres', GenresRouter);
 
 app.use(bodyParser.urlencoded({
   extended: true
 }));
 
 
-let allowedOrigins = ['http://localhost:8080', 'http://testsite.com', 'http://localhost:1234', 'https://upload.wikimedia.org/wikipedia'];
+let allowedOrigins = ['http://localhost:8080', 'http://testsite.com', 'http://localhost:1234', 'https://peaceful-forest-99574.herokuapp.com/myflix-cryptic-waters.herokuapp.com', 'https://upload.wikimedia.org/wikipedia'];
 
 // app.use(cors()(
 //   {
