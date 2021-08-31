@@ -11,10 +11,10 @@ const express = require('express'),
   Directors = Models.Director,
   Genres = Models.Genre,
   config = require('./config.js'),
-  UsersRouter = require('./users/users-router');
-// MoviesRouter = require('./movies/movies-router'),
-// DirectorsRouter = require('./directors/directors-router'),
-// GenresRouter = require('./genres/genres-router');
+  UsersRouter = require('./users/users-router'),
+  MoviesRouter = require('./movies/movies-router'),
+  DirectorsRouter = require('./directors/directors-router'),
+  GenresRouter = require('./genres/genres-router');
 
 mongoose.connect(config.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -29,9 +29,9 @@ app.use(express.static('public'));
 app.use(express.json());
 app.use(morgan('common'));
 app.use('/users', UsersRouter);
-// app.use('/movies', MoviesRouter);
-// app.use('/directors', DirectorsRouter);
-// app.use('/genres', GenresRouter);
+app.use('/movies', MoviesRouter);
+app.use('/directors', DirectorsRouter);
+app.use('/genres', GenresRouter);
 
 app.use(bodyParser.urlencoded({
   extended: true
