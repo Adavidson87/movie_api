@@ -88,7 +88,7 @@ UsersRouter
         res.status(500).send('Error ' + error);
       });
   })
-  .post('/:Username/add/movies/:MovieID', passport.authenticate('jwt', { session: false }), (req, res) => { /* Adds a movie to a user's favorites list */
+  .post('/:Username/movies/:MovieID', passport.authenticate('jwt', { session: false }), (req, res) => { /* Adds a movie to a user's favorites list */
     Users.findOneAndUpdate({ Username: req.params.Username }, {
       $push: { FavoriteMovies: req.params.MovieID }
     },
@@ -102,7 +102,7 @@ UsersRouter
         }
       });
   })
-  .post('/:Username/remove/movies/:MovieID', passport.authenticate('jwt', { session: false }), (req, res) => { /* Removess a movie from a user's favorites list */
+  .delete('/:Username/movies/:MovieID', passport.authenticate('jwt', { session: false }), (req, res) => { /* Removes a movie from a user's favorites list */
     Users.findOneAndRemove({ Username: req.params.Username }, {
       $pull: { FavoriteMovies: req.params.MovieID }
     },
