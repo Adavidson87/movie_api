@@ -102,6 +102,20 @@ UsersRouter
         }
       });
   })
+  .post('/users/:Username/:MovieID', passport.authenticate("jwt", { session: false }), (req, res) => { /* Removes a movie from favorites list */
+    Users.findOneAndUpdate({ Username: req.params.Username }, {
+      $pull: { Favorites: req.params.MovieID },
+    },
+      { new: true },
+      (err, updatedUser) => {
+        if (err) {
+          res.status(500).send("Error: " + err);
+        } else {
+          res.json(updatedUser);
+        }
+      }
+    );
+  })
   .delete('/:Username', passport.authenticate('jwt', { session: false }), (req, res) => { /* Delete a user by username */
     Users.findOneAndRemove({ Username: req.params.Username })
       .then((user) => {
