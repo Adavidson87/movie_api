@@ -104,7 +104,7 @@ UsersRouter
   })
   .post('/:Username/remove/movies/:MovieID', passport.authenticate("jwt", { session: false }), (req, res) => { /* Removes a movie from favorites list */
     Users.findOneAndRemove({ Username: req.params.Username }, {
-      $pull: { Favorites: req.params.MovieID },
+      $pull: { FavoriteMovies: req.params.MovieID },
     },
       { new: true },
       (err, updatedUser) => {
