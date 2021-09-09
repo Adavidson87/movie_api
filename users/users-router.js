@@ -103,7 +103,7 @@ UsersRouter
       });
   })
   .delete('/:Username/movies/:MovieID', passport.authenticate('jwt', { session: false }), (req, res) => { /* Removes a movie from a user's favorites list */
-    Users.findOneAndRemove({ Username: req.params.Username }, {
+    Users.findOneAndUpdate({ Username: req.params.Username }, {
       $pull: { FavoriteMovies: req.params.MovieID }
     },
       { new: true },
