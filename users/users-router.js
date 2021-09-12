@@ -5,7 +5,7 @@ const Users = Models.User;
 const passport = require('passport');
 const { check, validationResult } = require('express-validator');
 
-//Adds a new user
+
 UsersRouter
   .get('/', passport.authenticate('jwt', { session: false }), (req, res) => { /* gets all users*/
     Users.find()
@@ -53,7 +53,7 @@ UsersRouter
         }
       });
   })
-  .post('/', [
+  .post('/', [ //Adds new user
     check('Username', 'Username is required').isLength({ min: 5 }),
     check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
     check('Password', 'Password is required').not().isEmpty(),
