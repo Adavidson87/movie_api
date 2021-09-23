@@ -28,13 +28,14 @@ UsersRouter
       });
   })
   .put('/:Username', passport.authenticate('jwt', { session: false }), (req, res) => { /* update a users username */
-    let hashedPassword = Users.hashPassword(req.body.Password);
+    // let hashedPassword = Users.hashPassword(req.body.Password);
     let obj = {};
     if (req.body.Username) {
       obj.Username = req.body.Username
     }
     if (req.body.Password) {
-      obj.Password = hashedPassword
+      // obj.Password = hashedPassword
+      obj.Password = req.body.Password
     }
     if (req.body.Email) {
       obj.Email = req.body.Email
