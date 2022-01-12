@@ -38,7 +38,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 
-let allowedOrigins = ['http://localhost:8080', 'http://testsite.com', 'http://localhost:1234', 'http://localhost:4200', 'https://peaceful-forest-99574.herokuapp.com/myflix-cryptic-waters.herokuapp.com', 'https://upload.wikimedia.org/wikipedia'];
+let allowedOrigins = ['http://localhost:8080', 'http://testsite.com', 'http://localhost:1234', 'http://localhost:4200', 'https://adavidson87.github.io/myflix-Angular-client', 'https://upload.wikimedia.org/wikipedia'];
 
 //imports authentication code
 let auth = require('./auth')(app);
